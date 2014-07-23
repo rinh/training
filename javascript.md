@@ -11,18 +11,18 @@ JS基础
 * isNaN, 判断是否为一个非数字
 * 常用的`Math`方法 http://www.w3school.com.cn/jsref/jsref_obj_math.asp
 
-```
-    Math.floor(3.5) -->  3
-    Math.round(3.5) -->  4
-    Math.random()   -->  0.5169974472373724
-    ( Math.floor( Math.random() * 10 ) + 1 ) --> 5
-```
+    ```javascript
+        Math.floor(3.5) -->  3
+        Math.round(3.5) -->  4
+        Math.random()   -->  0.5169974472373724
+        ( Math.floor( Math.random() * 10 ) + 1 ) --> 5
+    ```
 
 * parseInt( str , radix )， 需要写进制
 
-```
-	parseInt("08") 在IE下，会返回0
-```
+    ```javascript
+	    parseInt("08") 在IE下，会返回0
+    ```
 
 ## 字符串
 
@@ -51,119 +51,121 @@ JS基础
 
 * 替换, 简单的模板引擎
 
-```
+    ```javascript
     var obj = {
         name : "john" , 
         num : 999
     }
-    
+        
 	"hello, #{name}! The number is #{num}. ".replace(/\#{(.*?)}/g , function($0, $1){
 		return obj[$1];
 	})
-```
-* 使用工具网站 regexpal.com
+    ```
+    
+* 使用工具网站 http://regexpal.com
 
 
 ## 日期类型
 
 * 如何计算时间
 
-```
+    ```javascript
 	var d = new Date() 获取当前时间
 	d.getTime() 	    返回距1970年1月1日之间的毫秒数
 	d.getMonth() + 1    +1后才是真正月份
 	new Date(1406013266879)
 	new Date("1970/01/01")
-```
+    ```
 
 
 ## 原型链
 
 * 理解 
 
-```
-类: Array
-实例: var a = new Array("a","b","c");
-     var a = ["a","b","c"];
-     
-     a.push(5);
-	 // a ---> Array.prototype ---> Object.prototype ---> null
-	 
-	 a.push = function(){
-	 	alert('wakaka');
-	 }
-```
+    ```javascript
+    // 类: Array
+    // 实例: 
+    var a = new Array("a","b","c"); 
+    var a = ["a","b","c"];
+             
+    a.push(5);
+	// a ---> Array.prototype ---> Object.prototype ---> null
+        	 
+	a.push = function(){
+	    alert('wakaka');
+	}
+    ```
 
 * hasOwnProperty , 判断是否是非原型链上的属性
 
-```
-	a.hasOwnProperty('push')  -->  true
-```
+    ```javascript
+    a.hasOwnProperty('push')  -->  true
+    ```
 
 
 ## 函数
 
 * 常见的几种声明&调用方式
 
-```
-
-function A(){}; A();    		//FD(declarations), 先声明后使用
-
-var A = function(){}; a();     //FE(expressions)
-
-(function(){})(); 			    //FE(self invoke)
-
-```
+    ```javascript
+    function A(){}; A();    		//FD(declarations), 先声明后使用
+        
+    var A = function(){}; a();      //FE(expressions)
+        
+    (function(){})(); 			    //FE(self invoke)
+    ```
 
 * 关于 this 
 
-`this`关键字指向上下文对象(context object)，但在不同的执行环境会发生变化
+ `this`关键字指向上下文对象(context object)，但在不同的执行环境会发生变化
 
-```
-function foo() {
-  alert(this);
-}
-
-foo(); // global object
-foo.prototype.constructor(); // foo.prototype
-
-var bar = {
-  baz: foo
-};
-
-bar.baz(); // bar
-
-(bar.baz)(); // also bar
-(bar.baz = bar.baz)(); // but here is global object
-(bar.baz, bar.baz)(); // also global object
-(false || bar.baz)(); // also global object
-
-var otherFoo = bar.baz;
-otherFoo(); // again global object
-```
+    ```javascript
+    function foo() {
+      alert(this);
+    }
+                
+    foo(); // global object
+    foo.prototype.constructor(); // foo.prototype
+                
+    var bar = {
+      baz: foo
+    };
+                
+    bar.baz(); // bar
+                
+    (bar.baz)(); // also bar
+    (bar.baz = bar.baz)(); // but here is global object
+    (bar.baz, bar.baz)(); // also global object
+    (false || bar.baz)(); // also global object
+                
+    var otherFoo = bar.baz;
+    otherFoo(); // again global object
+    ```
 
 * apply 与 call , 调用函数并可以修改上下文对象(context object)
 
-```
-foo.apply( bar , [ 1 , 2 , 3 ] )  // bar
-foo.call( bar , 1 , 2 , 3 )  // bar 
-
-bar.baz( 1 , 2 , 3 )
-```
+    ```javascript
+    foo.apply( bar , [ 1 , 2 , 3 ] )  // bar
+    foo.call( bar , 1 , 2 , 3 )  // bar 
+        
+    bar.baz( 1 , 2 , 3 )
+    ```
 
 * arguments 
 
-得到 `function` 的所有参数
-
-```
-var add = function( a1, a2 , a3 , a4 , ..... ) 
-
-var add = function(){
-    var i = 0 , sum = 0;
-    while(typeof arguments[i] != 'undefined') { sum += arguments[i]; i++; } 
-    return sum;
-}
-```
+ 得到 `function` 的所有参数
+ 
+    ```javascript
+    var add = function( a1, a2 , a3 , a4 , ..... ) 
+        
+    var add = function(){
+        var i = 0 , sum = 0;
+        while(typeof arguments[i] != 'undefined') { 
+            sum += arguments[i]; i++; 
+        } 
+        return sum;
+    }
+    ```
 
 * 闭包，内部函数可以访问外部函数的参数与变量
 
@@ -171,16 +173,16 @@ var add = function(){
 	
 	那就是在`函数1`的内部，再定义一个`函数2`，再把`函数2`交给大家使用
 	
-	```
-	function f1(){
-　　　　var n = 999;
-　　　　return function f2(){
-　　　　　　alert(n); // 999
-　　　　}
-　　}
-　　
-　　var f = f1();
-　　f(); <--- alert 999
+    ```javascript
+    function f1(){
+        var n = 999;
+        return function f2(){
+            alert(n); // 999
+        }
+    }
+    　　
+    var f = f1();
+    f(); <--- alert 999
 	```
 	
 	
@@ -188,7 +190,7 @@ var add = function(){
 * 如何设计一个`jquery core`
 
 
-	```  
+    ```javascript
    	(function() {
 
        	var jQuery = function( selector, context ) {
@@ -212,11 +214,10 @@ var add = function(){
 
 * 减少全局变量污染
 
-	```
+    ```javascript
 	(function( window, undefined ) {
 		// balabala....
-	})(window);
-
+	})(window); 
 	```
 
 
@@ -224,7 +225,7 @@ var add = function(){
 
 	> _回调函数以参数形式扔给执行函数，并不会马上被执行。它会在包含它的函数内的某个特定时间点被“回调”_
 
-	```
+    ```javascript
 	var done = function(){
 		alert('注册完毕')
 	}
@@ -241,37 +242,201 @@ var add = function(){
 
 ## 异步编程
 
+* 理解
+
+ 同步是这样
+    	
+    ```javascript
+    f1();
+    f2();
+    ```
+    	
+ 异步是这样
+    	
+    ```javascript
+    function f1(callback){
+        setTimeout(function () {
+            // f1's code
+            callback();
+        }, 1000);
+    }
+    
+    f1(f2)
+    ```
+        
+* 回调地狱 **callback hell**
+
+    ```javascript
+    ajax(a, function() {
+      ajax(b(a.somedata), function() {
+        ajax(c(b.somedata), function() {
+          c.finish()
+        }
+      }) 
+    })
+    ```
+
+    改进版本
+    
+    ```javascript
+    var step_3 = function() {
+        c.finish();
+    };
+    
+    var step_2 = function(c, b) {
+        ajax(c(b.somedata), step_3);
+    };
+    
+    var step_1 = function(b, a) {
+      ajax(b(a.somedata), step_2);
+    };
+    
+    ajax(a, step_1);
+    ```
+    
+
+* 异步编程解决方案
+
+ ##### observer pattern
+
+    ```javascript
+    var app = $({});
+
+    app.bind('a_done',function(data){
+        ajax(b(data),done('b'));
+    });
+    
+    app.bind('b_done',function(data){
+        ajax(c(data),done('c'));
+    });
+    
+    app.bind('c_done',function(data){
+        finish();
+    });
+
+    var done = function(type){
+        return function(){
+            var args = Array.prototype.slice.apply(arguments);
+            app.trigger( type + '_done' , args )
+        }
+    }    
+    
+    ajax(a,done('a'))
+
+    ``` 
+
+
+ #####  jquery deferred 
+ 
+    * 基于 [CommonJS](http://wiki.commonjs.org/wiki/Promises/A)
     * 理解
 
-    	同步是这样
-    	
-    	```
-    	f1();
-    	f2();
-    	```
-    	
-    	异步是这样
-    	
-    	```
-    	function f1(callback){
-    　　　　setTimeout(function () {
-    　　　　　　// f1的真正任务代码
-    　　　　　　callback();
-    　　　　}, 1000);
-    　　 }
-    　　
-    　　f1(f2)
-    	```
-        
-    * 回调地狱
+    ```javascript
+    function foo() {
+        var deferred = $.Deferred();
+        setTimeout(function() {
+            deferred.resolve("foo");
+        }, 1000);
+        return deferred.promise();
+    }
+    
+    foo().then(function(value) {
+        console.log('成功',value);
+    });
+    ```
+    
+    * 改进版本
 
-    * 异步编程解决方案
+    ```javascript
+    function a(){
+        return $.ajax(a);
+    }    
+    
+    function b(data){
+        return $.ajax(b(data));
+    }
+    
+    function c(data){
+        return $.ajax(c(data));
+    }
+
+    a().then(b).then(c).then(function(){
+        finish();
+    });
+    ```
+
+
+ #####  async 
+
+    * https://github.com/caolan/async
+    
+    ```javascript
+    async.series([
+        function(callback){
+            // do some stuff ...
+            callback(null, 'one');
+        },
+        function(callback){
+            // do some more stuff ...
+            callback(null, 'two');
+        }
+    ],
+    // optional callback
+    function(err, results){
+        // results is now equal to ['one', 'two']
+    });
+    ```
+    
+    ```javascript
+    async.parallel([
+        function(callback){
+            setTimeout(function(){
+                callback(null, 'one');
+            }, 200);
+        },
+        function(callback){
+            setTimeout(function(){
+                callback(null, 'two');
+            }, 100);
+        }
+    ],
+    // optional callback
+    function(err, results){
+        // the results array will equal ['one','two'] even though
+        // the second function had a shorter timeout.
+    });
+    ``` 
+
+    ```javascript
+    async.waterfall([
+        function(callback){
+            callback(null, 'one', 'two');
+        },
+        function(arg1, arg2, callback){
+          // arg1 now equals 'one' and arg2 now equals 'two'
+            callback(null, 'three');
+        },
+        function(arg1, callback){
+            // arg1 now equals 'three'
+            callback(null, 'done');
+        }
+    ], function (err, result) {
+       // result now equals 'done'    
+    });
+    ```
+
+
+ #####  其他
+     * wind.js (看看即可,仅供学习)
+     * Q
+    
 
 ## 继承
 
-QClass
 
-```
+#### QClass完整源码
+
+```javascript
 (function (global) {
 
     var objectEach = function (obj, fn , scope  ) {
@@ -314,68 +479,27 @@ QClass
 
         return part;
     };
-
-
-    /**
-     * @class XNative
-     * @name XNative
-     * @classdesc Base Class , All classes created by XClass inherit from XNative
-     * @param {Object} params The constructor parameters.
-     */
-
+ 
     var XNative = function (params) {
 
     };
-
-    /**
-     * @name XNative.mixin
-     * @function
-     * @desc mixin
-     * @param {XNative|Object} mixinClass
-     * When mixin class is XNative , the mixin scope will be 'this' ( the mixed-in-instance )
-     * or mixin class is object like { name : 'MixinClass' , mixin : MixinClass } , the mixin scope will be this.mixins.MixinClass
-     *
-     * @returns self
-     */
-
+ 
     XNative.mixin = function ( mixinClass , name  ) {
         this.mixins.push( { name : name , mixin : mixinClass } );
         return this;
     };
-
-    /**
-     * @name XNative.implement
-     * @function
-     * @desc implement functions to class
-     * @param {Object} params
-     * @returns self
-     */
+ 
     XNative.implement = function ( params , safe ) {
         extend.call(this.prototype, params , safe );
         return this;
     };
-
-
-    /**
-     * @name XNative#implement
-     * @function
-     * @desc implement functions to instance
-     * @param {Object} params
-     * @returns self
-     */
+ 
 
     XNative.prototype.implement = function ( params , safe ) {
         extend.call(this, params , safe );
         return this;
     };
-
-
-    /**
-     * @name XNative#parent
-     * @function
-     * @desc call super class's function having the same function name
-     * @returns {Object}
-     */
+ 
     XNative.prototype.parent = function () {
         var caller = this.parent.caller ,
             func = caller.$prev;
@@ -428,25 +552,7 @@ QClass
     };
 
     var PROCESSOR_KEYS = ['statics', 'extend', 'mixins'];
-
-    /**
-     * @class XClass
-     * @classdesc Class Factory
-     * @param  {Object} params
-     * @returns {XNative} The new Class
-     * @example new XClass({
-     *     statics : {
-     *         static_method : function(){}
-     *     },
-     *     method1 : function(){},
-     *     method2 : function(){},
-     *     extend : ExtendedClass,
-     *     mixins : [ MixedClass1 , MixedClass2 ],
-     *     singleton : false
-     * });
-     */
-
-
+ 
     function XClass( params ){
 
         var params = params || {};
@@ -500,47 +606,13 @@ QClass
 
         return me.initialize && me.initialize.apply(me, args ) || me;
     }
-
-
-    /**
-     * @namespace XClass.utils
-     * */
-    XClass.utils = {
-        /**
-         * @name XClass.utils.objectEach
-         * @function
-         * @desc Iterates through an object and invokes the given callback function for each iteration
-         * @param {Object} object  The object ot iterate
-         * @param {Function} The callback function
-         */
-        objectEach:objectEach,
-        /**
-         * @name XClass.utils.arrayEach
-         * @function
-         * @desc Iterates an array and invokes the given callback function for each iteration , It will call Array.prototype.forEach if supported
-         * @param {Array} object  The array ot iterate
-         * @param {Function} The callback function
-         */
-        arrayEach:arrayEach,
-        /**
-         * @name XClass.utils.ns
-         * @function
-         * @desc Creates namespaces to be used for scoping variables
-         * @param {String} name  dot-namespaced format namespaces, for example: 'Myapp.package'
-         * @param {Object} root  the root object, global if null
-         * @returns {Object} The namespace object, if name is null , it returns the root
-         */
+ 
+    XClass.utils = { 
+        objectEach:objectEach, 
+        arrayEach:arrayEach, 
         ns:ns
     };
-
-    /**
-     * @name XClass.define
-     * @desc define a class
-     * @param {String} className The class name to create in string dot-namespaced format, for example: 'Myapp.MyClass'
-     * @param {Object} params The parameters for the new Class
-     * @returns {XNative} The XNative Class
-     */
-
+ 
     XClass.define = function (className, params) {
         if (className) {
             var lastIndex = className.lastIndexOf('.') , newClass;
@@ -555,28 +627,51 @@ QClass
 })(window);
 ```
 
-使用 QClass 
+* 使用 QClass 
 
-```
-QClass.define("Hotel.base",{
-    statics : {
-      static_method : function(){}
-    },
-    method1 : function(){},
-    method2 : function(){},
-    extend : ExtendedClass,
-    mixins : [ MixedClass1 , MixedClass2 ],
-    singleton : false
-})
+    ```javascript
+    QClass.define("Hotel.base",{
+        initialize : function(){}
+        statics : {
+          static_method : function(){}
+        },
+        method1 : function(){},
+        method2 : function(){},
+        extend : ExtendedClass,
+        mixins : [ MixedClass1 , MixedClass2 ],
+        singleton : false
+    })
+    
+    QClass.define("Hotel.app",{ 
+        method1 : function(){},
+        method2 : function(){},
+        extend : Hotel.base
+        singleton : false
+    })
+    
+    ```
+    
+* 命名空间
+* 继承
+* 构造器
+* 静态方法
+* 实例方法
+* 单例模式
+* mixin
 
-```
+
+## ryna
+
 
 ## 作业
 
 完成随意排序的动画 http://www.cs.usfca.edu/~galles/visualization/ComparisonSort.html
 * 不要使用现成的库
 
+## 扩展内容
 
+* node 
+* coffeescript 
 
 
 ## 进阶阅读
