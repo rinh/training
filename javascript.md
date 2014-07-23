@@ -61,6 +61,7 @@ JS基础
 		return obj[$1];
 	})
 ```
+* 使用工具网站 regexpal.com
 
 
 ## 日期类型
@@ -234,35 +235,37 @@ var add = function(){
 	关于异步回调：在设计上，只要是回调均认为是异步的。 
 	
 	> setTimeout , ajax 的应用均为异步
-		
-	
 	
 	[理解并使用回调](http://javascriptissexy.com/understand-javascript-callback-functions-and-use-them/)
 
 
-* 异步编程
+## 异步编程
 
-	同步是这样
-	
-	```
-	f1();
-	f2();
-	```
-	
-	异步是这样
-	
-	```
-	function f1(callback){
-　　　　setTimeout(function () {
-　　　　　　// f1的真正任务代码
-　　　　　　callback();
-　　　　}, 1000);
-　　 }
-　　
-　　f1(f2)
-	```
+    * 理解
 
+    	同步是这样
+    	
+    	```
+    	f1();
+    	f2();
+    	```
+    	
+    	异步是这样
+    	
+    	```
+    	function f1(callback){
+    　　　　setTimeout(function () {
+    　　　　　　// f1的真正任务代码
+    　　　　　　callback();
+    　　　　}, 1000);
+    　　 }
+    　　
+    　　f1(f2)
+    	```
+        
+    * 回调地狱
 
+    * 异步编程解决方案
 
 ## 继承
 
