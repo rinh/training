@@ -21,7 +21,7 @@ JS基础
 * parseInt( str , radix )， 需要写进制
 
     ```javascript
-	    parseInt("08") 在IE下，会返回0
+	    parseInt("08") //在IE下，会返回0
     ```
 
 ## 字符串
@@ -70,9 +70,9 @@ JS基础
 * 如何计算时间
 
     ```javascript
-	var d = new Date() 获取当前时间
-	d.getTime() 	    返回距1970年1月1日之间的毫秒数
-	d.getMonth() + 1    +1后才是真正月份
+	var d = new Date()  //获取当前时间
+	d.getTime() 	    //返回距1970年1月1日之间的毫秒数
+	d.getMonth() + 1    //+1后才是真正月份
 	new Date(1406013266879)
 	new Date("1970/01/01")
     ```
@@ -99,7 +99,7 @@ JS基础
 * hasOwnProperty , 判断是否是非原型链上的属性
 
     ```javascript
-    a.hasOwnProperty('push')  -->  true
+    a.hasOwnProperty('push')  // -->  true
     ```
 
 
@@ -431,7 +431,7 @@ JS基础
      * Q
     
 
-## 继承
+## OO编程
 
 
 #### QClass完整源码
@@ -658,9 +658,6 @@ JS基础
 * 实例方法
 * 单例模式
 * mixin
-
-
-## ryna
 
 
 ## 作业
